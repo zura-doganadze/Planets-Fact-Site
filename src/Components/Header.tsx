@@ -1,22 +1,24 @@
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
 
 export default function Header() {
   return (
-    <Wrapeer>
+    <Wrapper>
+      <h1>the planets</h1>
       <nav>
         <Link to="/mercury">mercury</Link>
-        <Link to="/earth">mercury</Link>
-        <Link to="/venus">mercury</Link>
+        <Link to="/venus">venus</Link>
+        <Link to="/earth">earth</Link>
+        <Link to="/mars">mars</Link>
+        <Link to="/jupiter">jupiter</Link>
+        <Link to="/saturn">saturn</Link>
+        <Link to="/uranus">uranus</Link>
+        <Link to="/neptune">neptune</Link>
       </nav>
-    </Wrapeer>
+    </Wrapper>
   );
 }
 
-const Wrapeer = styled.div`
-  font-size: 44px;
-  a {
-    margin-right: 22px;
-  }
+const Wrapper = styled.div`
+  display: flex;
 `;
