@@ -7,6 +7,7 @@ import data from "../data.json";
 import linkIcon from ".././assets/external-link-icon.svg";
 
 function Planet() {
+  const ButtonData = ["OVERVIEW", "Internal Structure", "Surface Geology"];
   const params = useParams();
   const planetData = data.find(
     (item) => item.name.toLocaleLowerCase() === params.planet
@@ -19,7 +20,10 @@ function Planet() {
     <Main>
       <MainContainer>
         <PlanetContentContainer>
-          <img src={planetData.images.planet} alt="svg" />
+          <PlanetImgContainer>
+            <img src={planetData.images.planet} alt="svg" />
+          </PlanetImgContainer>
+
           <MainInfoContainer>
             <h1>{planetData.name}</h1>
             <p>{planetData.overview.content}</p>
@@ -28,7 +32,11 @@ function Planet() {
               <a href={planetData.overview.source}>Wikipedia</a>{" "}
               <img src={linkIcon} alt="link icon img" />
             </div>
-            <div></div>
+            <ButtonsContainer>
+              {ButtonData.map((item) => {
+                return <div key={item}>{item}</div>;
+              })}
+            </ButtonsContainer>
           </MainInfoContainer>
         </PlanetContentContainer>
         <DetailsWrapper>
@@ -61,19 +69,25 @@ const Main = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const MainContainer = styled.div `
+const MainContainer = styled.div`
   width: 100%;
   max-width: 80%;
-`
+`;
 const PlanetContentContainer = styled.div`
-  margin: 126px 0 87px 0;
+  margin: 126px 0 87px 10%;
   display: flex;
+  justify-content: space-between;
+`;
+const PlanetImgContainer = styled.div`
+  max-width: 290px;
+  width: 100%;
+  height: 290px;
   img {
-    max-width: 290px;
-    max-height: 290px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
   }
 `;
-
 const MainInfoContainer = styled.div`
   max-width: 350px;
   width: 100%;
@@ -108,16 +122,19 @@ const MainInfoContainer = styled.div`
     margin: 0 9px;
   }
 `;
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 //DetailsWrapper
 const DetailsWrapper = styled.div`
   display: flex;
-  column-gap: 30px;
+  justify-content: space-between;
   div {
-    max-width: 255px;
+    max-width: 355px;
     width: 100%;
     border: 1px solid #fff;
-    opacity: 0.2;
     display: flex;
     flex-direction: column;
     text-align: start;
@@ -130,6 +147,8 @@ const DetailsWrapper = styled.div`
       line-height: 25px; /* 227.273% */
       letter-spacing: 1px;
       text-transform: uppercase;
+      margin-bottom: 15px;
+      opacity: 0.2;
     }
     :nth-child(2) {
       color: #fff;
