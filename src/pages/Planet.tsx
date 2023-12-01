@@ -17,6 +17,7 @@ function Planet() {
       <div>
         <span>{planetData.name}</span>
         <span>{planetData.radius}</span>
+        <img src={planetData.images.planet} alt="" />
       </div>
     </div>
   );

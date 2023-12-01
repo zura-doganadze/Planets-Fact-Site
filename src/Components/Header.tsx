@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+
+
+import * as HeaderStyles from "./HeaderStyles"; // Adjust the path accordingly
+
+const { Wrapper, Container } = HeaderStyles;
 
 export default function Header() {
   return (
@@ -15,10 +19,12 @@ export default function Header() {
         <Link to="/uranus">uranus</Link>
         <Link to="/neptune">neptune</Link>
       </nav>
+      <Container>
+        zura
+      </Container>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
-  display: flex;
-`;
+
+ 
