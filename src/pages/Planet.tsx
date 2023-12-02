@@ -4,8 +4,8 @@ import styled from "styled-components";
 import data from "../data.json";
 
 //img
-import linkIcon from ".././assets/external-link-icon.svg";
-import { useEffect } from "react";
+// import linkIcon from ".././assets/external-link-icon.svg";
+import { useEffect, useState } from "react";
 
 function Planet() {
   const ButtonData = ["OVERVIEW", "Internal Structure", "Surface Geology"];
@@ -18,29 +18,23 @@ function Planet() {
     return <div>Planet not found</div>;
   }
 
-  
- 
+  const [selectedType, setSelectedType] = useState("overview");
+
   const handleDivClick = (index: number) => {
-    console.log(index);
+    console.log(selectedType);
 
-    let selectedType;
     if (index === 0) {
-      console.log("overview");
-      selectedType = planetData.overview;
+       setSelectedType("overview");
     } else if (index === 1) {
-      console.log("structure");
-      selectedType = planetData.structure;
+      setSelectedType("structure");
     } else {
-      console.log("geology");
-      selectedType = planetData.geology;
+      setSelectedType("geology");
     }
-
-    // Use selectedType where needed, for example, update state or render in JSX.
   };
   useEffect(() => {
-    handleDivClick(0)
-    console.log("useEFfect workd")
-  })
+    handleDivClick(0);
+    console.log("useEFfect workd");
+  });
   return (
     <Main>
       <MainContainer>
@@ -50,11 +44,11 @@ function Planet() {
           </PlanetImgContainer>
           <MainInfoContainer>
             <h1>{planetData.name}</h1>
-            <p>{selectedType.content  }</p>
+            {/* <p>{planetData.selectedType.content}</p> */}
             <div>
               <span>Source</span>
               <a href={planetData.overview.source}>Wikipedia</a>{" "}
-              <img src={linkIcon} alt="link icon img" />
+              {/* <img src={linkIcon} alt="link icon img" /> */}
             </div>
             <ButtonsContainer>
               {ButtonData.map((item, index) => {
