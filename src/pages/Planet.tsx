@@ -5,6 +5,7 @@ import data from "../data.json";
 
 //img
 import linkIcon from ".././assets/external-link-icon.svg";
+import { useEffect } from "react";
 
 function Planet() {
   const ButtonData = ["OVERVIEW", "Internal Structure", "Surface Geology"];
@@ -16,6 +17,30 @@ function Planet() {
   if (!planetData) {
     return <div>Planet not found</div>;
   }
+
+  
+ 
+  const handleDivClick = (index: number) => {
+    console.log(index);
+
+    let selectedType;
+    if (index === 0) {
+      console.log("overview");
+      selectedType = planetData.overview;
+    } else if (index === 1) {
+      console.log("structure");
+      selectedType = planetData.structure;
+    } else {
+      console.log("geology");
+      selectedType = planetData.geology;
+    }
+
+    // Use selectedType where needed, for example, update state or render in JSX.
+  };
+  useEffect(() => {
+    handleDivClick(0)
+    console.log("useEFfect workd")
+  })
   return (
     <Main>
       <MainContainer>
@@ -23,18 +48,22 @@ function Planet() {
           <PlanetImgContainer>
             <img src={planetData.images.planet} alt="svg" />
           </PlanetImgContainer>
-
           <MainInfoContainer>
             <h1>{planetData.name}</h1>
-            <p>{planetData.overview.content}</p>
+            <p>{selectedType.content  }</p>
             <div>
               <span>Source</span>
               <a href={planetData.overview.source}>Wikipedia</a>{" "}
               <img src={linkIcon} alt="link icon img" />
             </div>
             <ButtonsContainer>
-              {ButtonData.map((item) => {
-                return <div key={item}>{item}</div>;
+              {ButtonData.map((item, index) => {
+                return (
+                  <div key={item} onClick={() => handleDivClick(index)}>
+                    <span>0{index + 1}</span>
+                    <span>{item}</span>
+                  </div>
+                );
               })}
             </ButtonsContainer>
           </MainInfoContainer>
@@ -125,6 +154,25 @@ const MainInfoContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: start;
+  row-gap: 18px;
+  margin-top: 40px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px; /* 208.333% */
+  letter-spacing: 2.571px;
+  text-transform: uppercase;
+  div {
+    width: 100%;
+    border: 1px solid #fff;
+    /* opacity: 0.2; */
+    padding: 12px 0 11px 28px;
+    cursor: pointer;
+    :first-child {
+      margin-right: 28px;
+    }
+  }
 `;
 
 //DetailsWrapper
