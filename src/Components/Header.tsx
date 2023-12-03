@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 
-
-import * as HeaderStyles from "./HeaderStyles"; // Adjust the path accordingly
-
-const { Wrapper, Container } = HeaderStyles;
+import { Wrapper } from "./HeaderStyles";
 
 export default function Header() {
   return (
@@ -19,12 +16,6 @@ export default function Header() {
         <Link to="/uranus">uranus</Link>
         <Link to="/neptune">neptune</Link>
       </nav>
-      <Container>
-        zura
-      </Container>
     </Wrapper>
   );
 }
-
-
- 

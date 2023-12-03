@@ -10,31 +10,29 @@ import { useEffect, useState } from "react";
 function Planet() {
   const ButtonData = ["OVERVIEW", "Internal Structure", "Surface Geology"];
   const params = useParams();
-  const planetData = data.find(
+  const planetData: Planet | undefined = data.find(
     (item) => item.name.toLocaleLowerCase() === params.planet
   );
-
-  if (!planetData) {
-    return <div>Planet not found</div>;
-  }
 
   const [selectedType, setSelectedType] = useState("overview");
 
   const handleDivClick = (index: number) => {
-    console.log(selectedType);
-
     if (index === 0) {
-       setSelectedType("overview");
+      setSelectedType("overview");
     } else if (index === 1) {
       setSelectedType("structure");
-    } else {
+    } else if (index === 2) {
       setSelectedType("geology");
     }
   };
+
   useEffect(() => {
     handleDivClick(0);
-    console.log("useEFfect workd");
-  });
+  }, []); // Empty dependency array means it runs only once on mount
+
+  if (!planetData) {
+    return <div>Planet not found</div>;
+  }
   return (
     <Main>
       <MainContainer>
@@ -44,10 +42,12 @@ function Planet() {
           </PlanetImgContainer>
           <MainInfoContainer>
             <h1>{planetData.name}</h1>
-            {/* <p>{planetData.selectedType.content}</p> */}
+            <p>
+              {(planetData[selectedType as keyof Planet] as Selected).content}
+            </p>
             <div>
               <span>Source</span>
-              <a href={planetData.overview.source}>Wikipedia</a>{" "}
+              <a href={planetData.overview.source}>Wikipedia</a>
               {/* <img src={linkIcon} alt="link icon img" /> */}
             </div>
             <ButtonsContainer>
