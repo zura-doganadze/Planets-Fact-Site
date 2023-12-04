@@ -17,13 +17,16 @@ type Planet = {
   radius: string;
   temperature: string;
   images: {
-    planet: string;
-    internal: string;
-    geology: string;
+    planet: string | undefined;
+    internal: string | undefined;
+    geology: string | undefined;
   };
 };
 
 type Selected = {
   content: string;
   source: string;
+  planet: string | undefined;
+  internal: string | undefined;
+  geology: string | undefined;
 };

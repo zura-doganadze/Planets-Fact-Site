@@ -15,20 +15,29 @@ function Planet() {
   );
 
   const [selectedType, setSelectedType] = useState("overview");
+  const [selectImg, setSelectedImg] = useState<string | undefined>();
+  const [selectgeology, setSelectedgeology] = useState<string | undefined>();
 
+  console.log(planetData?.images.geology);
   const handleDivClick = (index: number) => {
     if (index === 0) {
       setSelectedType("overview");
+      setSelectedImg(planetData?.images.planet);
+      setSelectedgeology("");
     } else if (index === 1) {
       setSelectedType("structure");
+      setSelectedImg(planetData?.images.internal);
+      setSelectedgeology("");
     } else if (index === 2) {
       setSelectedType("geology");
+      setSelectedImg(planetData?.images.planet);
+      setSelectedgeology(planetData?.images.geology);
     }
   };
 
   useEffect(() => {
     handleDivClick(0);
-  }, []); // Empty dependency array means it runs only once on mount
+  }, [planetData]);
 
   if (!planetData) {
     return <div>Planet not found</div>;
@@ -38,7 +47,8 @@ function Planet() {
       <MainContainer>
         <PlanetContentContainer>
           <PlanetImgContainer>
-            <img src={planetData.images.planet} alt="svg" />
+            <img src={selectImg} alt="svg" />
+            <img src={selectgeology ? selectgeology : ""} alt="" />
           </PlanetImgContainer>
           <MainInfoContainer>
             <h1>{planetData.name}</h1>
