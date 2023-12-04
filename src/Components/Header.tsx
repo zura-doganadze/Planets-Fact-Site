@@ -1,21 +1,35 @@
 import { Link } from "react-router-dom";
 
-import { Wrapper } from "./HeaderStyles";
+import { Wrapper, TitlesContainer, Line } from "./HeaderStyles";
 
 export default function Header() {
+  const data: string[] = [
+    "mercury",
+    "venus",
+    "earth",
+    "mars",
+    "jupiter",
+    "saturn",
+    "uranus",
+    "neptune",
+  ];
   return (
     <Wrapper>
-      <h1>the planets</h1>
-      <nav>
-        <Link to="/mercury">mercury</Link>
-        <Link to="/venus">venus</Link>
-        <Link to="/earth">earth</Link>
-        <Link to="/mars">mars</Link>
-        <Link to="/jupiter">jupiter</Link>
-        <Link to="/saturn">saturn</Link>
-        <Link to="/uranus">uranus</Link>
-        <Link to="/neptune">neptune</Link>
-      </nav>
+      <TitlesContainer>
+        <h1>the planets</h1>
+        <nav>
+          {data.map((item) => {
+            return (
+              <Link key={item} to={`/${item}`}>
+                {item}
+              </Link>
+            );
+          })}
+        </nav>
+      </TitlesContainer>
+      <Line></Line>
+
+      {/* <div></div> */}
     </Wrapper>
   );
 }

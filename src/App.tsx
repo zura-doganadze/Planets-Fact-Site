@@ -21,5 +21,6 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
+  max-width: 1480px;
   width: 100%;
 `;

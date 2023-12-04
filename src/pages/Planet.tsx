@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 import data from "../data.json";
 
-//img
-// import linkIcon from ".././assets/external-link-icon.svg";
+import linkIcon from "../../public/external-link-icon.svg";
 import { useEffect, useState } from "react";
 
 function Planet() {
@@ -48,7 +47,7 @@ function Planet() {
         <PlanetContentContainer>
           <PlanetImgContainer>
             <img src={selectImg} alt="svg" />
-            <img src={selectgeology ? selectgeology : ""} alt="" />
+            {selectgeology ? <GeologyImg src={selectgeology} alt="img" /> : ""}
           </PlanetImgContainer>
           <MainInfoContainer>
             <h1>{planetData.name}</h1>
@@ -58,7 +57,7 @@ function Planet() {
             <div>
               <span>Source</span>
               <a href={planetData.overview.source}>Wikipedia</a>
-              {/* <img src={linkIcon} alt="link icon img" /> */}
+              <img src={linkIcon} alt="link icon img" />
             </div>
             <ButtonsContainer>
               {ButtonData.map((item, index) => {
@@ -112,14 +111,23 @@ const PlanetContentContainer = styled.div`
   justify-content: space-between;
 `;
 const PlanetImgContainer = styled.div`
-  max-width: 290px;
+  max-width: 490px;
   width: 100%;
-  height: 290px;
+  height: 490px;
+  position: relative;
   img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
   }
+`;
+const GeologyImg = styled.img`
+  max-width: 158px;
+  width: 100%;
+  max-height: 165px;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 const MainInfoContainer = styled.div`
   max-width: 350px;
@@ -183,6 +191,7 @@ const ButtonsContainer = styled.div`
 const DetailsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  column-gap: 20px;
   div {
     max-width: 355px;
     width: 100%;
