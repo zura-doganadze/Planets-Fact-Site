@@ -12,12 +12,10 @@ function Planet() {
   const planetData: Planet | undefined = data.find(
     (item) => item.name.toLocaleLowerCase() === params.planet
   );
-
   const [selectedType, setSelectedType] = useState("overview");
   const [selectImg, setSelectedImg] = useState<string | undefined>();
   const [selectgeology, setSelectedgeology] = useState<string | undefined>();
 
-  console.log(planetData?.images.geology);
   const handleDivClick = (index: number) => {
     if (index === 0) {
       setSelectedType("overview");

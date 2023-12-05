@@ -30,9 +30,13 @@ export const Wrapper = styled.div`
     text-transform: uppercase;
     text-decoration: none;
   }
+  &a.ctive {
+    border-top: 2px solid white;
+    color: red;
+  }
 `;
 export const Line = styled.div`
-  height: 2px;
+  height: 1px;
   background-color: #fff;
   position: absolute;
   top: 83px;
