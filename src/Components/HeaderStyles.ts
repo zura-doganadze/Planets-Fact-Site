@@ -10,8 +10,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 33px 41px 0 41px;
+  margin: 0 41px 0 41px;
   h1 {
+    margin-top: 33px;
     color: #fff;
     font-size: 28px;
     letter-spacing: -1.05px;
