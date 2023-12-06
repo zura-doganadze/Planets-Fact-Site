@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import React from "react";
 
 export const TitlesContainer = styled.div`
   display: flex;
@@ -44,3 +46,21 @@ export const Line = styled.div`
   left: 0;
   right: 0;
 `;
+
+type StyledLinkProps = {
+  isactive: boolean;
+  to: string; // Add the 'to' prop here
+  children?: React.ReactNode;
+};
+
+export const StyledLink: React.FC<StyledLinkProps> = styled(
+  Link
+)<StyledLinkProps>(
+  (props) => css`
+    border-top: 6px solid ${props.isactive ? "#D14C32" : "none"};
+    padding-top: 33px;
+    &:hover {
+      color: #aba9a9;
+    }
+  `
+);

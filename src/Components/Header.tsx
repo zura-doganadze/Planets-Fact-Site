@@ -1,10 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { useLocation } from "react-router-dom";
 
-import { Wrapper, TitlesContainer, Line } from "./HeaderStyles";
-import React, { useState, useEffect } from "react";
+import { Wrapper, TitlesContainer, Line, StyledLink } from "./HeaderStyles";
+import { useState, useEffect } from "react";
 
-// const [active, setActive] = useState(false)
 
 export default function Header() {
   const data: string[] = [
@@ -38,7 +36,7 @@ export default function Header() {
               <StyledLink
                 key={item}
                 to={`/${item}`}
-                isActive={active === `/${item}`}
+                isactive={active === `/${item}`}
               >
                 {item}
               </StyledLink>
@@ -50,20 +48,6 @@ export default function Header() {
     </Wrapper>
   );
 }
-type StyledLinkProps = {
-  isActive: boolean;
-  to: string; // Add the 'to' prop here
-  children?: React.ReactNode;
-};
-
-const StyledLink: React.FC<StyledLinkProps> = styled(Link)<StyledLinkProps>(
-  (props) => css`
-    border-top: 6px solid ${props.isActive ? "#D14C32" : "none"};
-    padding-top: 33px;
-    &:hover {
-      color: #aba9a9
-    }
-  `
-);
+ 
 
 

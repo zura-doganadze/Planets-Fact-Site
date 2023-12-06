@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import data from "../data.json";
 
@@ -16,7 +16,13 @@ function Planet() {
   const [selectImg, setSelectedImg] = useState<string | undefined>();
   const [selectgeology, setSelectedgeology] = useState<string | undefined>();
 
+  //buttons active
+  const [active, setActive] = useState<string>("0");
+
+  //
   const handleDivClick = (index: number) => {
+    setActive(`0${index + 1}`);
+
     if (index === 0) {
       setSelectedType("overview");
       setSelectedImg(planetData?.images.planet);
@@ -60,10 +66,14 @@ function Planet() {
             <ButtonsContainer>
               {ButtonData.map((item, index) => {
                 return (
-                  <div key={item} onClick={() => handleDivClick(index)}>
+                  <Buttons
+                    key={item}
+                    isactive={active === `0${index + 1}`}
+                    onClick={() => handleDivClick(index)}
+                  >
                     <span>0{index + 1}</span>
                     <span>{item}</span>
-                  </div>
+                  </Buttons>
                 );
               })}
             </ButtonsContainer>
@@ -185,6 +195,19 @@ const ButtonsContainer = styled.div`
   }
 `;
 
+type ButtonsProps = {
+  isactive: boolean;
+  onClick?: () => void;
+  children?: React.ReactNode;
+};
+const Buttons: React.FC<ButtonsProps> = styled.div<ButtonsProps>(
+  (props) => css`
+    background-color: ${props.isactive ? "#D14C32" : "transparent"};
+    &:hover {
+      background: #767676;
+    }
+  `
+);
 //DetailsWrapper
 const DetailsWrapper = styled.div`
   display: flex;
